@@ -2,6 +2,7 @@
 
 import unittest
 import party
+# from flask import session
 
 
 class PartyTests(unittest.TestCase):
@@ -22,8 +23,24 @@ class PartyTests(unittest.TestCase):
     def test_no_rsvp_yet(self):
         """Do users who haven't RSVPed see the correct view?"""
 
+        # what's the difference on the page when you HAVE RSVPed?
+            # treats
+            # party details
+        # what should you see if not?
+            # form
         # FIXME: Add a test to show we haven't RSVP'd yet
-        print("FIXME")
+        result = self.client.get("/")
+        self.assertIn(b"<h2>Please RSVP</h2>", result.data)
+
+        # session = {}
+        # session['rsvp'] = True
+        # if session['rsvp'] == True:
+        #     result = self.client.get("/")
+        #     self.assertIn(b"<h2>Party Details</h2>", result.data)
+        # else
+            # result = ...
+            # self.assertIn(b"<form>...", result.data)
+        #print("FIXME")
 
     def test_rsvp(self):
         """Do RSVPed users see the correct view?"""
